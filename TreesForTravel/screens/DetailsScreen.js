@@ -23,7 +23,7 @@ export default class DetailsScreen extends React.Component {
    }
 
   static navigationOptions = {
-    title: 'Details',
+    title: 'My Flights',
   };
 
   componentDidMount = () => {
@@ -32,7 +32,7 @@ export default class DetailsScreen extends React.Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
         {this.state.flights
           .map((flight, i) => {
             return (
@@ -45,7 +45,7 @@ export default class DetailsScreen extends React.Component {
               </View>
             )
           })}
-      </View>
+      </ScrollView>
     );
   }
 }

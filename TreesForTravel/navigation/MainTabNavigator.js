@@ -11,14 +11,12 @@ const HomeStack = createStackNavigator({
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'My Trees',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
       name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+        Platform.OS === 'ios' ? `ios-leaf` : 'md-leaf'
       }
     />
   ),
@@ -29,11 +27,11 @@ const DetailsStack = createStackNavigator({
 });
 
 DetailsStack.navigationOptions = {
-  tabBarLabel: 'Details',
+  tabBarLabel: 'My Flights',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-paper-plane' : 'md-paper-plane'}
     />
   ),
 };
