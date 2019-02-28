@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
-import Forest from './forest.js';
+import TitleBar from '../components/titleBar.js';
+import Forest from '../components/forest.js';
 
-import Cities from '../data/cities.json'
+import Cities from '../data/cities.json';
 
-export default class addFlightContainer extends React.Component {
+export default class HomeScreen extends React.Component {
 
   constructor(props) {
      super(props);
@@ -16,22 +17,21 @@ export default class addFlightContainer extends React.Component {
      };
    }
 
+  static navigationOptions = {
+    title: 'Home',
+  };
 
-   //original below at: https://www.movable-type.co.uk/scripts/latlong.html
-   //found at: https://stackoverflow.com/questions/5260423/torad-javascript-function-throwing-error
-   calculateDistanceInKm = (lat1, lon1, lat2, lon2) => {
-    var R = 6371; // Radius of the earth in km
-    var dLat = (lat2 - lat1) * Math.PI / 180;  // deg2rad below
-    var dLon = (lon2 - lon1) * Math.PI / 180;
-    var a =
-        0.5 - Math.cos(dLat)/2 +
-        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-        (1 - Math.cos(dLon))/2;
+  calculateDistanceInKm = (lat1, lon1, lat2, lon2) => {
+   var R = 6371; // Radius of the earth in km
+   var dLat = (lat2 - lat1) * Math.PI / 180;  // deg2rad below
+   var dLon = (lon2 - lon1) * Math.PI / 180;
+   var a =
+       0.5 - Math.cos(dLat)/2 +
+       Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+       (1 - Math.cos(dLon))/2;
 
-    return R * 2 * Math.asin(Math.sqrt(a));
-   }
-
-   //refs: https://www.carbonindependent.org/sources_aviation.html
+   return R * 2 * Math.asin(Math.sqrt(a));
+  }
 
   analyseFlight = (origin, destination) => {
 
@@ -82,8 +82,10 @@ export default class addFlightContainer extends React.Component {
     this.getFlights()
   }
 
+//formatting not quite right here - title bar should be outside of the inout view
   render() {
       return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
+        <TitleBar />
         <TextInput
           style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
           placeholder="From"
@@ -98,5 +100,4 @@ export default class addFlightContainer extends React.Component {
         <Forest flights={this.state.flights} />
       </View>
   }
-
 }
