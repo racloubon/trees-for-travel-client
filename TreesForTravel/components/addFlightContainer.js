@@ -32,42 +32,37 @@ export default class addFlightContainer extends React.Component {
 
    //refs: https://www.carbonindependent.org/sources_aviation.html
 
-  addFlight = () => {
-    const origin = this.state.origin;
-    const destination = this.state.destination;
+  analyseFlight = (origin, destination) => {
 
-    // console.log(Cities.find(data => data.city === origin).lat)
-    // console.log(Cities.find(data => data.city === origin).lng)
-    // console.log(Cities.find(data => data.city === destination).lat)
-    // console.log(Cities.find(data => data.city === destination).lng)
-
-
-    //currently has default co-ordinates for London to New York - need to implement database to look-up
-    const orLat = Cities.find(data => data.city === origin).lat;
-    const orLon = Cities.find(data => data.city === origin).lng;
-    const desLat = Cities.find(data => data.city === destination).lat;
-    const desLong = Cities.find(data => data.city === destination).lng;
-    const distance = Math.trunc(this.calculateDistanceInKm(orLat, orLon, desLat, desLong))
+    const originData = Cities.find(data => data.city === origin);
+    const destinationData = Cities.find(data => data.city === destination);
+    const distance = Math.trunc(this.calculateDistanceInKm(originData.lat, originData.lng, destinationData.lat, destinationData.lng));
     const carbonFootprint = distance*115 //in grams
-    const treesNeeded = carbonFootprint/900000 //in grams, assuming one tree absorbs 1 ton in its lifetime
-    const treesNeededRounded = Math.round(treesNeeded)*10 //currently one tree = 1/10th of a tree because otherwise they're too small
+    const treesNeeded = Math.round(carbonFootprint/900000)*10 //in grams, assuming one tree absorbs 1 ton in its lifetime; currently one tree = 1/10th of a tree because otherwise they're too small
 
-    if (origin && destination) {
-      console.log(origin, destination, distance, treesNeeded)
+    const newFlight = {
+      origin: origin,
+      destination: destination,
+      distance: distance,
+      carbonFootprint: carbonFootprint,
+      treesToOffset: new Array(treesNeeded).fill(0)
+    }
+    return newFlight
+  }
 
-      const newFlight = {
-        origin: origin,
-        destination: destination,
-        distance: distance,
-        carbonFootprint: carbonFootprint,
-        treesToOffset: new Array(treesNeededRounded).fill(0)
-      }
-
-      console.log(newFlight)
-
+  addFlight = async () => {
+    try {
+      let flightData = this.analyseFlight(this.state.origin, this.state.destination);
+      let response = await fetch('http://192.168.1.187:3000/flights', {
+        method: 'POST',
+        headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
+        body: JSON.stringify(flightData),
+      });
       let flightsArray = [...this.state.flights];
-      flightsArray.push(newFlight);
+      flightsArray.push(flightData);
       this.setState({flights: flightsArray});
+    } catch (e) {
+      console.log('error with addFlight:' + e)
     }
   }
 
