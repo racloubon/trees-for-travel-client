@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 import TitleBar from '../components/titleBar.js';
 import Forest from '../components/forest.js';
+import SummaryBar from '../components/summaryBar.js';
+
 
 import Cities from '../data/cities.json';
 import DataFunctions from '../dataProcessing/functions.js'
@@ -43,7 +45,6 @@ export default class HomeScreen extends React.Component {
       const flightsData = await fetch('http://192.168.1.187:3000/flights');
       const flights = await flightsData.json()
       this.setState({flights});
-      console.log(this.state.flights)
     } catch (e) {
       console.log('error with getting flights: ' + e)
     }
@@ -60,15 +61,16 @@ export default class HomeScreen extends React.Component {
         <TextInput
           style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
           placeholder="From"
-          onChangeText={(origin) => this.setState({origin})}
+          onChangeText={(origin) => this.setState({origin: DataFunctions.processCityInput(origin)})}
         />
         <TextInput
           style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
           placeholder="To"
-          onChangeText={(destination) => this.setState({destination})}
+          onChangeText={(destination) => this.setState({destination: DataFunctions.processCityInput(destination)})}
         />
         <Button title="Add Flight" color="#4A4A48" onPress={this.addFlight}>Add Flight</Button>
         <Forest flights={this.state.flights} />
+        <SummaryBar flights={this.state.flights}/>
       </View>
   }
 }

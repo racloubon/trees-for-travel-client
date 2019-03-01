@@ -5,6 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
+import MoreInfoScreen from '../screens/MoreInfoScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -36,7 +37,22 @@ DetailsStack.navigationOptions = {
   ),
 };
 
+const MoreInfoStack = createStackNavigator({
+  MoreInfo: MoreInfoScreen,
+});
+
+MoreInfoStack.navigationOptions = {
+  tabBarLabel: 'More Info',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-paper-plane' : 'md-paper-plane'}
+    />
+  ),
+};
+
 export default createBottomTabNavigator({
   HomeStack,
   DetailsStack,
+  MoreInfoStack,
 });

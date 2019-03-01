@@ -1,5 +1,13 @@
 import Cities from '../data/cities.json';
 
+exports.processCityInput = (city) => {
+  let arr = city.trim().toLowerCase().split('');
+  let newCity = arr.map((val, i, col) => col[i - 1] === ' ' || i === 0 ? val.toUpperCase() : val);
+  return newCity.join('')
+}
+//to ascii needed
+
+
 const calculateDistanceInKm = (lat1, lon1, lat2, lon2) => {
  var R = 6371; // Radius of the earth in km
  var dLat = (lat2 - lat1) * Math.PI / 180;  // deg2rad below
@@ -14,8 +22,8 @@ const calculateDistanceInKm = (lat1, lon1, lat2, lon2) => {
 
 exports.analyseFlight = (origin, destination) => {
 
-  const originData = Cities.find(data => data.city === origin);
-  const destinationData = Cities.find(data => data.city === destination);
+  const originData = Cities.find(data => data.city_ascii === origin);
+  const destinationData = Cities.find(data => data.city_ascii === destination);
   const distance = Math.trunc(calculateDistanceInKm(originData.lat, originData.lng, destinationData.lat, destinationData.lng));
   const carbonFootprint = distance*115 //in grams
   const treesNeeded = Math.round(carbonFootprint/900000)*10 //in grams, assuming one tree absorbs 1 ton in its lifetime; currently one tree = 1/10th of a tree because otherwise they're too small
