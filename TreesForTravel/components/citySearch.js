@@ -10,16 +10,12 @@ export default class citySearch extends React.Component {
      super(props);
      this.state = {
        matchingCities: [],
-       selectedCity: ''
+       selectedCity: '',
+       selectedFlag: true,
      }
    }
 
-  handleInput = () => {
-
-  }
-
   searchForCity = (input) => {
-    console.log(input);
     if (input.length > 3) {
       let arr = Cities.filter(data => data.city.includes(input))
       return arr.map(data => data.city + ', ' + data.country)
@@ -27,21 +23,32 @@ export default class citySearch extends React.Component {
     return [];
   }
 
+  handlePress = (city) => {
+    this.setState({selectedCity: city});
+    this.setState({selectedFlag: false})
+  }
+
+  handleChange = (e) => {
+    let formattedInput = DataFunctions.processCityInput(e)
+    this.setState({selectedFlag: true})
+    this.setState({selectedCity: null})
+    this.setState({matchingCities: this.searchForCity(formattedInput)})
+  }
+
   render() {
       return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
         <TextInput
-          style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
-          placeholder='sample'
-          onChangeText={e => this.setState({matchingCities: this.searchForCity(e)})}
-        />
+            style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
+            placeholder={this.props.placeholder}
+            value={this.state.selectedCity ? this.state.selectedCity : null}
+            onChangeText={(e) => this.handleChange(e)}
+          />
 
-
-        {this.state.matchingCities.length
-          ? this.state.matchingCities.map((city, i) => <View key={i}><Text key={i * i} onPress={() => this.setState({selectedCity: city})}>{city}</Text></View>)
+        {this.state.matchingCities.length && this.state.selectedFlag
+          ? this.state.matchingCities
+            .map((city, i) => <View key={i}><Text key={i * i} onPress={() => this.handlePress(city)}>{city}</Text></View>)
           : <Text>Type 3 or more characters to search / No match</Text>
         }
-
-        {console.log(this.state.selectedCity)}
       </View>
   }
 }
