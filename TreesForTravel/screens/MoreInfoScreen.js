@@ -16,9 +16,7 @@ export default class MoreInfoScreen extends React.Component {
 
   render() {
     return (
-      <ScrollView style={{flex: 6, backgroundColor: '#D8DAD3'}}>
-        <CitySearch />
-      </ScrollView>
+      <Text>INFORMATION PAGE ON DEFORESTATION</Text>
     );
   }
 }

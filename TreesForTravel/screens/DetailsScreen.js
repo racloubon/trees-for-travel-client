@@ -9,20 +9,7 @@ class DetailsScreen extends React.Component {
 
   constructor(props) {
      super(props);
-     // this.state = {
-     //   //flights: []
-     // };
    }
-
-   // getFlights = async () => {
-   //   try {
-   //     const flightsData = await fetch('http://192.168.1.187:3000/flights');
-   //     const flights = await flightsData.json()
-   //     this.setState({flights});
-   //   } catch (e) {
-   //     console.log('error with getting flights: ' + e)
-   //   }
-   // }
 
    deleteFlight = async (id) => {
      fetch('http://192.168.1.187:3000/flights/' + id, {method: 'DELETE'})
@@ -33,10 +20,6 @@ class DetailsScreen extends React.Component {
   static navigationOptions = {
     title: 'My Flights',
   };
-
-  // componentDidMount = () => {
-  //   this.getFlights()
-  // }
 
   render() {
     return (

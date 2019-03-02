@@ -17,11 +17,6 @@ class HomeScreen extends React.Component {
 
   constructor(props) {
      super(props);
-     this.state = {
-       origin: '',
-       destination: '',
-       testState: ''
-     };
    }
 
   static navigationOptions = {
@@ -29,8 +24,7 @@ class HomeScreen extends React.Component {
   };
 
   addFlight = async () => {
-    let flightData
-      = DataFunctions.analyseFlight(this.state.origin, this.state.destination);
+    let flightData = DataFunctions.analyseFlight(this.props.selectedOrigin, this.props.selectedDestination);
     fetch('http://192.168.1.187:3000/flights', {
       method: 'POST',
       headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
@@ -48,29 +42,15 @@ class HomeScreen extends React.Component {
       .catch(error => console.log('error with getting Flights: ' + error))
   };
 
-  changeHandler = (city, originOrDestination) => {
-    this.setState({originOrDestination: DataFunctions.processCityInput(origin)})
-  };
-
   componentDidMount = () => {
     this.loadFlights()
   };
 
-//formatting not quite right here - title bar should be outside of the inout view
   render() {
       return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
         <TitleBar />
-        <CitySearch />
-        <TextInput
-          style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
-          placeholder="From"
-          onChangeText={(origin) => this.setState({origin: DataFunctions.processCityInput(origin)})}
-        />
-        <TextInput
-          style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
-          placeholder="To"
-          onChangeText={(destination) => this.setState({destination: DataFunctions.processCityInput(destination)})}
-        />
+        <CitySearch name="from"/>
+        <CitySearch name="to"/>
         <Button title="Add Flight" color="#4A4A48" onPress={this.addFlight}>Add Flight</Button>
         <Forest flights={this.props.flights} />
         <SummaryBar flights={this.props.flights}/>
@@ -80,6 +60,8 @@ class HomeScreen extends React.Component {
 
 const mapStateToProps = (state) => ({
   flights: state.flights,
+  selectedOrigin: state.selectedOrigin,
+  selectedDestination: state.selectedDestination
 });
 
 const mapDispatchToProps = (dispatch) => ({
