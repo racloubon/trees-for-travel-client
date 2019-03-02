@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getFlights, postFlight } from '../Redux/actions.js';
@@ -9,7 +9,7 @@ import CitySearch from '../components/citySearch.js';
 import Forest from '../components/forest.js';
 import SummaryBar from '../components/summaryBar.js';
 
-
+import forest from '../assets/forest.jpg'
 import Cities from '../data/cities.json';
 import DataFunctions from '../dataProcessing/functions.js'
 
@@ -51,16 +51,51 @@ class HomeScreen extends React.Component {
   };
 
   render() {
-      return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
-        <TitleBar />
-        <CitySearch name="From" clear={this.state.inputClear} />
-        <CitySearch name="To" clear={this.state.inputClear} />
-        <Button title="Add Flight" color="#4A4A48" onPress={this.addFlight}>Add Flight</Button>
-        <Forest flights={this.props.flights} />
-        <SummaryBar flights={this.props.flights}/>
-      </View>
+      return (
+        <View>
+          <Image
+            source={require('../assets/forest.jpg')}
+            style={{position: 'absolute'}} />
+          <TitleBar />
+          <CitySearch name="From" clear={this.state.inputClear} />
+          <CitySearch name="To" clear={this.state.inputClear} />
+          <Text style={styles.button} title="Add Flight" onPress={this.addFlight}>➕</Text>
+          <Forest flights={this.props.flights} />
+          <SummaryBar flights={this.props.flights}/>
+        </View>
+      )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    opacity: 0.7,
+    margin: 10,
+    padding: 10,
+    flex: 1
+  },
+  header: {
+    margin: 5,
+    fontWeight: 'bold',
+    fontSize: 30,
+    textAlign: 'center',
+    flex: 1
+  },
+  body: {
+    fontSize: 26,
+    backgroundColor: 'white',
+    opacity: 0.7
+  },
+  button: {
+    color: 'white',
+    fontSize: 30,
+    textAlign: 'center',
+    backgroundColor: 'black',
+    opacity: 0.7,
+    margin: 10
+  },
+});
 
 const mapStateToProps = (state) => ({
   flights: state.flights,

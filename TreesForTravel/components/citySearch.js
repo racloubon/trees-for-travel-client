@@ -39,9 +39,9 @@ class citySearch extends React.Component {
   }
 
   render() {
-      return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
+      return <View style={styles.container}>
         <TextInput
-            style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
+            style={styles.textInput}
             placeholder={this.props.name}
             value={
               this.props.clear ? null : this.state.selectedCity ? this.state.selectedCity : null
@@ -50,12 +50,36 @@ class citySearch extends React.Component {
           />
         {this.state.matchingCities.length && this.state.noCitySelected
           ? this.state.matchingCities
-            .map((data, i) => <View key={i}><Text key={i * i} onPress={() => this.handlePress(data, this.props.name)}>{data.city + ', ' + data.country}</Text></View>)
+            .map((data, i) => <Text styles={styles.searchOptions} key={i * i} onPress={() => this.handlePress(data, this.props.name)}>{data.city + ', ' + data.country}</Text>)
           : null
         }
       </View>
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'black',
+    opacity: 0.7,
+    marginHorizontal: 10,
+    marginVertical: 3,
+    padding: 10,
+  },
+  body: {
+    fontSize: 26,
+    backgroundColor: 'black',
+    color: 'white'
+  },
+  textInput: {
+    fontSize: 26,
+    backgroundColor: 'black',
+    color: 'white'
+  },
+  searchOptions: {
+    fontSize: 15,
+    color: 'white'
+  }
+});
 
 const mapStateToProps = (state) => ({
   selectedOrigin: state.selectedOrigin,

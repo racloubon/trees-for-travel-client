@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, Text, Button } from 'react-native';
+import { ScrollView, StyleSheet, View, Text, Button, Image } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 import { connect } from 'react-redux';
@@ -24,16 +24,18 @@ class DetailsScreen extends React.Component {
   render() {
     return (
       <ScrollView>
+      <Image
+        source={require('../assets/sky.jpg')}
+        style={{position: 'absolute'}} />
         {this.props.flights
           .map((flight, i) => {
             return (
-              <View style={{backgroundColor: "#D8DAD3", margin: 10}} key={i}>
-                <Text>From: {flight.origin}</Text>
-                <Text>To: {flight.destination}</Text>
-                <Text>Distance: {flight.distance}km</Text>
-                <Text>Carbon Emissions: {Math.round(flight.carbonFootprint/100)}kg</Text>
-                <Text>Trees Needed: {flight.treesToOffset.length}</Text>
-                <Button title="Delete Flight" color="#4A4A48" onPress={() => this.deleteFlight(flight._id)}>Delete Flight</Button>
+              <View style={{backgroundColor: "white", margin: 10, padding: 7, opacity: 0.7}} key={i}>
+                <Text style={styles.header}>{flight.origin} → {flight.destination}</Text>
+                <Text style={styles.body}>Distance: {flight.distance}km</Text>
+                <Text style={styles.body}>Carbon Emissions: {Math.round(flight.carbonFootprint/100)}kg</Text>
+                <Text style={styles.body}>Trees Needed: {flight.treesToOffset.length}</Text>
+                <Text style={styles.button} color="#4A4A48" onPress={() => this.deleteFlight(flight._id)}>✖</Text>
               </View>
             )
           })}
@@ -41,6 +43,20 @@ class DetailsScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  header: {
+    fontWeight: 'bold',
+    fontSize: 15
+  },
+  body: {
+    fontSize: 15
+  },
+  button: {
+    fontSize: 17,
+    textAlign: 'right'
+  }
+});
 
 const mapStateToProps = (state) => ({
   flights: state.flights,
