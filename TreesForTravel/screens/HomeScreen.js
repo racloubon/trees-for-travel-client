@@ -17,13 +17,17 @@ class HomeScreen extends React.Component {
 
   constructor(props) {
      super(props);
+     this.state = {
+       inputClear: false
+     }
    }
 
   static navigationOptions = {
     title: 'My Trees',
   };
 
-  addFlight = async () => {
+  addFlight = () => {
+    this.setState({inputClear: true})
     let flightData = DataFunctions.analyseFlight(this.props.selectedOrigin, this.props.selectedDestination);
     fetch('http://192.168.1.187:3000/flights', {
       method: 'POST',
@@ -49,8 +53,8 @@ class HomeScreen extends React.Component {
   render() {
       return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
         <TitleBar />
-        <CitySearch name="From" />
-        <CitySearch name="To" />
+        <CitySearch name="From" clear={this.state.inputClear} />
+        <CitySearch name="To" clear={this.state.inputClear} />
         <Button title="Add Flight" color="#4A4A48" onPress={this.addFlight}>Add Flight</Button>
         <Forest flights={this.props.flights} />
         <SummaryBar flights={this.props.flights}/>

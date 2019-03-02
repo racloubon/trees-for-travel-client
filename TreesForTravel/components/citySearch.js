@@ -43,7 +43,9 @@ class citySearch extends React.Component {
         <TextInput
             style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
             placeholder={this.props.name}
-            value={this.state.selectedCity ? this.state.selectedCity : null}
+            value={
+              this.props.clear ? null : this.state.selectedCity ? this.state.selectedCity : null
+            }
             onChangeText={(text) => this.handleChange(text)}
           />
         {this.state.matchingCities.length && this.state.noCitySelected
