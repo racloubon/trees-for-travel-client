@@ -18,7 +18,8 @@ class HomeScreen extends React.Component {
   constructor(props) {
      super(props);
      this.state = {
-       inputClear: false
+       from: null,
+       to: null
      }
    }
 
@@ -27,7 +28,10 @@ class HomeScreen extends React.Component {
   };
 
   addFlight = () => {
-    this.setState({inputClear: true})
+    this.setState({
+      from: null,
+      to: null
+    });
     let flightData = DataFunctions.analyseFlight(this.props.selectedOrigin, this.props.selectedDestination);
     fetch('http://192.168.1.187:3000/flights', {
       method: 'POST',
@@ -51,14 +55,14 @@ class HomeScreen extends React.Component {
   };
 
   render() {
+    const {from, to} = this.state;
       return (
-        <View>
+        <View style={{paddingTop: 30}}>
           <Image
             source={require('../assets/forest.jpg')}
             style={{position: 'absolute'}} />
-          <TitleBar />
-          <CitySearch name="From" clear={this.state.inputClear} />
-          <CitySearch name="To" clear={this.state.inputClear} />
+          <CitySearch name="From" city={from} onChange={city => this.setState({from: city})} />
+          <CitySearch name="To" city={to} onChange={city => this.setState({to: city})} />
           <Text style={styles.button} title="Add Flight" onPress={this.addFlight}>➕</Text>
           <Forest flights={this.props.flights} />
           <SummaryBar flights={this.props.flights}/>

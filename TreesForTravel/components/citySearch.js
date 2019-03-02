@@ -13,7 +13,6 @@ class citySearch extends React.Component {
      super(props);
      this.state = {
        matchingCities: [],
-       selectedCity: '',
        noCitySelected: true,
      }
    }
@@ -26,16 +25,23 @@ class citySearch extends React.Component {
   }
 
   handlePress = (city, inputName) => {
-    this.setState({selectedCity: city.city + ', ' + city.country});
-    this.setState({noCitySelected: false})
+    console.log(`🍘 ${city.city}, ${inputName}`)
+    this.props.onChange(city.city + ', ' + city.country);
+    this.setState({noCitySelected: false});
+
     inputName === "From" ? this.props.setSelectedOrigin(city) : this.props.setSelectedDestination(city);
   }
 
   handleChange = (text) => {
     let formattedInput = DataFunctions.processCityInput(text);
     this.setState({noCitySelected: true});
-    this.setState({selectedCity: null});
+    this.props.onChange(null);
     this.setState({matchingCities: this.searchForCity(formattedInput)});
+  }
+
+  componentDidMount() {
+console.log(this.props.name);
+
   }
 
   render() {
@@ -43,14 +49,13 @@ class citySearch extends React.Component {
         <TextInput
             style={styles.textInput}
             placeholder={this.props.name}
-            value={
-              this.props.clear ? null : this.state.selectedCity ? this.state.selectedCity : null
-            }
-            onChangeText={(text) => this.handleChange(text)}
+            placeholderTextColor="white"
+            value={this.props.city}
+            onChangeText={this.handleChange}
           />
         {this.state.matchingCities.length && this.state.noCitySelected
           ? this.state.matchingCities
-            .map((data, i) => <Text styles={styles.searchOptions} key={i * i} onPress={() => this.handlePress(data, this.props.name)}>{data.city + ', ' + data.country}</Text>)
+            .map((data, i) => <Text style={styles.searchOptions} key={i * i} onPress={() => this.handlePress(data, this.props.name)}>{data.city + ', ' + data.country}</Text>)
           : null
         }
       </View>
@@ -76,8 +81,9 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   searchOptions: {
-    fontSize: 15,
-    color: 'white'
+    fontSize: 20,
+    color: 'white',
+    padding: 10
   }
 });
 
