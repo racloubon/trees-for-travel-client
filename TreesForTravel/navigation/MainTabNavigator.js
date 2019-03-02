@@ -46,7 +46,7 @@ MoreInfoStack.navigationOptions = {
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-paper-plane' : 'md-paper-plane'}
+      name={Platform.OS === 'ios' ? 'ios-information-circle' : 'md-information-circle'}
     />
   ),
 };

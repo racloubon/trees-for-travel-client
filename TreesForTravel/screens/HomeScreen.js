@@ -49,8 +49,8 @@ class HomeScreen extends React.Component {
   render() {
       return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
         <TitleBar />
-        <CitySearch name="from"/>
-        <CitySearch name="to"/>
+        <CitySearch name="From" />
+        <CitySearch name="To" />
         <Button title="Add Flight" color="#4A4A48" onPress={this.addFlight}>Add Flight</Button>
         <Forest flights={this.props.flights} />
         <SummaryBar flights={this.props.flights}/>

@@ -14,7 +14,7 @@ class citySearch extends React.Component {
      this.state = {
        matchingCities: [],
        selectedCity: '',
-       selectedFlag: true,
+       noCitySelected: true,
      }
    }
 
@@ -27,27 +27,26 @@ class citySearch extends React.Component {
 
   handlePress = (city, inputName) => {
     this.setState({selectedCity: city.city + ', ' + city.country});
-    this.setState({selectedFlag: false})
-    inputName === "from" ? this.props.setSelectedOrigin(city) : this.props.setSelectedDestination(city);
+    this.setState({noCitySelected: false})
+    inputName === "From" ? this.props.setSelectedOrigin(city) : this.props.setSelectedDestination(city);
   }
 
   handleChange = (text) => {
-    let formattedInput = DataFunctions.processCityInput(text)
-    this.setState({selectedFlag: true})
-    this.setState({selectedCity: null})
-    this.setState({matchingCities: this.searchForCity(formattedInput)})
+    let formattedInput = DataFunctions.processCityInput(text);
+    this.setState({noCitySelected: true});
+    this.setState({selectedCity: null});
+    this.setState({matchingCities: this.searchForCity(formattedInput)});
   }
 
   render() {
       return <View style={{flex: 6, backgroundColor: '#D8DAD3'}}>
         <TextInput
             style={{height: 40, backgroundColor: "#F1F2EB", margin: 10}}
-            placeholder={this.props.placeholder}
+            placeholder={this.props.name}
             value={this.state.selectedCity ? this.state.selectedCity : null}
             onChangeText={(text) => this.handleChange(text)}
           />
-
-        {this.state.matchingCities.length && this.state.selectedFlag
+        {this.state.matchingCities.length && this.state.noCitySelected
           ? this.state.matchingCities
             .map((data, i) => <View key={i}><Text key={i * i} onPress={() => this.handlePress(data, this.props.name)}>{data.city + ', ' + data.country}</Text></View>)
           : null
