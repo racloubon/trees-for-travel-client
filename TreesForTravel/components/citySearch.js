@@ -25,10 +25,8 @@ class citySearch extends React.Component {
   }
 
   handlePress = (city, inputName) => {
-    console.log(`🍘 ${city.city}, ${inputName}`)
     this.props.onChange(city.city + ', ' + city.country);
     this.setState({noCitySelected: false});
-
     inputName === "From" ? this.props.setSelectedOrigin(city) : this.props.setSelectedDestination(city);
   }
 
@@ -37,11 +35,6 @@ class citySearch extends React.Component {
     this.setState({noCitySelected: true});
     this.props.onChange(null);
     this.setState({matchingCities: this.searchForCity(formattedInput)});
-  }
-
-  componentDidMount() {
-console.log(this.props.name);
-
   }
 
   render() {
