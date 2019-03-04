@@ -2,9 +2,8 @@ import React from 'react';
 import { ScrollView, StyleSheet, View, Text, Image } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-import CitySearch from '../components/citySearch.js';
-
 import forest from '../assets/forest.jpg'
+
 
 export default class MoreInfoScreen extends React.Component {
 
@@ -22,8 +21,10 @@ export default class MoreInfoScreen extends React.Component {
         <Image
           source={require('../assets/forest.jpg')}
           style={{position: 'absolute'}} />
+
         <View style={styles.container}>
           <Text style={styles.header}>Deforestation</Text>
+
           <Text style={styles.body}>
 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor condimentum libero, quis aliquet justo rutrum ac. Donec bibendum sapien erat, sed consectetur ex euismod sed. Nunc blandit congue enim. Pellentesque dapibus non neque sit amet viverra. Sed nec augue pulvinar, pharetra felis in, semper augue. Donec non dolor nisl. Integer eget posuere turpis, eget consectetur mi. Curabitur dignissim condimentum leo nec mollis. Curabitur consectetur, urna et congue egestas, augue elit eleifend nisl, nec dignissim augue eros a nibh. Suspendisse consequat nisi eu nisi pharetra, a iaculis ipsum sollicitudin. In pharetra diam id mi semper tincidunt. Duis enim elit, consequat vulputate gravida eu, rhoncus ac tortor. Donec rhoncus maximus nibh a ornare. Integer tincidunt convallis nunc, tempus lobortis eros porttitor finibus. Donec vel venenatis leo, a posuere risus.

@@ -5,6 +5,8 @@ import { ExpoLinksView } from '@expo/samples';
 import { connect } from 'react-redux';
 import { getFlights, deleteFlight } from '../Redux/actions.js';
 
+import DataFunctions from '../dataProcessing/functions.js'
+
 class DetailsScreen extends React.Component {
 
   constructor(props) {
@@ -32,8 +34,8 @@ class DetailsScreen extends React.Component {
             return (
               <View style={{backgroundColor: "white", margin: 10, padding: 7, opacity: 0.7}} key={i}>
                 <Text style={styles.header}>{flight.origin} → {flight.destination}</Text>
-                <Text style={styles.body}>Distance: {flight.distance}km</Text>
-                <Text style={styles.body}>Carbon Emissions: {Math.round(flight.carbonFootprint/100)}kg</Text>
+                <Text style={styles.body}>Distance: {DataFunctions.formatNumbers(flight.distance)}km</Text>
+                <Text style={styles.body}>Carbon Emissions: {DataFunctions.formatNumbers(Math.round(flight.carbonFootprint/1000))}kg</Text>
                 <Text style={styles.body}>Trees Needed: {flight.treesToOffset.length}</Text>
                 <Text style={styles.button} color="#4A4A48" onPress={() => this.deleteFlight(flight._id)}>✖</Text>
               </View>

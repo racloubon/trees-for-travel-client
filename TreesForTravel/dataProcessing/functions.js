@@ -18,6 +18,8 @@ const calculateDistanceInKm = (lat1, lon1, lat2, lon2) => {
  return R * 2 * Math.asin(Math.sqrt(a));
 }
 
+exports.formatNumbers = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
 exports.analyseFlight = (origin, destination) => {
   const distance = Math.trunc(calculateDistanceInKm(origin.lat, origin.lng, destination.lat, destination.lng));
   const carbonFootprint = distance*115 //in grams

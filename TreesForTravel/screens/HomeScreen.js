@@ -1,10 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, Dimensions } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getFlights, postFlight } from '../Redux/actions.js';
 
-import TitleBar from '../components/titleBar.js';
 import CitySearch from '../components/citySearch.js';
 import Forest from '../components/forest.js';
 import SummaryBar from '../components/summaryBar.js';
@@ -19,7 +18,8 @@ class HomeScreen extends React.Component {
      super(props);
      this.state = {
        from: null,
-       to: null
+       to: null,
+       visible: false
      }
    }
 
@@ -52,6 +52,7 @@ class HomeScreen extends React.Component {
 
   componentDidMount = () => {
     this.loadFlights()
+    if (!this.state.visible) setTimeout(() => this.setState({visible: true}), 700)
   };
 
   render() {
@@ -59,45 +60,28 @@ class HomeScreen extends React.Component {
       return (
         <View style={{paddingTop: 30}}>
           <Image
-            source={require('../assets/forest.jpg')}
-            style={{position: 'absolute'}} />
+            source={require('../assets/myTreesBg.jpg')}
+            style={{position: 'absolute', height: Dimensions.get('window').height, flex: 1 }} />
           <CitySearch name="From" city={from} onChange={city => this.setState({from: city})} />
           <CitySearch name="To" city={to} onChange={city => this.setState({to: city})} />
-          <Text style={styles.button} title="Add Flight" onPress={this.addFlight}>➕</Text>
+          <Text style={styles.button} title="Add Flight" onPress={this.addFlight}>+</Text>
           <Forest flights={this.props.flights} />
-          <SummaryBar flights={this.props.flights}/>
+          <SummaryBar flights={this.props.flights} isVisible={this.state.visible}/>
+          {console.log(this.state.visible)}
         </View>
       )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    opacity: 0.7,
-    margin: 10,
-    padding: 10,
-    flex: 1
-  },
-  header: {
-    margin: 5,
-    fontWeight: 'bold',
-    fontSize: 30,
-    textAlign: 'center',
-    flex: 1
-  },
-  body: {
-    fontSize: 26,
-    backgroundColor: 'white',
-    opacity: 0.7
-  },
   button: {
-    color: 'white',
+    color: '#F1F2EB',
     fontSize: 30,
     textAlign: 'center',
     backgroundColor: 'black',
-    opacity: 0.7,
-    margin: 10
+    opacity: 0.88,
+    margin: 10,
+    fontWeight: 'bold'
   },
 });
 

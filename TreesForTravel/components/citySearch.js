@@ -18,7 +18,7 @@ class citySearch extends React.Component {
    }
 
   searchForCity = (input) => {
-    if (input.length > 1) {
+    if (input.length > 3) {
       return Cities.filter(data => data.city.includes(input))
     }
     return [];
@@ -33,7 +33,6 @@ class citySearch extends React.Component {
   handleChange = (text) => {
     let formattedInput = DataFunctions.processCityInput(text);
     this.setState({noCitySelected: true});
-    this.props.onChange(null);
     this.setState({matchingCities: this.searchForCity(formattedInput)});
   }
 
@@ -58,25 +57,31 @@ class citySearch extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'black',
-    opacity: 0.7,
+    opacity: 0.88,
     marginHorizontal: 10,
     marginVertical: 3,
     padding: 10,
   },
   body: {
-    fontSize: 26,
+    fontSize: 20,
     backgroundColor: 'black',
-    color: 'white'
+    color: '#F1F2EB',
+    fontWeight: 'bold',
+    letterSpacing: 0.8,
   },
   textInput: {
-    fontSize: 26,
+    fontSize: 20,
     backgroundColor: 'black',
-    color: 'white'
+    color: '#F1F2EB',
+    fontWeight: 'bold',
+    letterSpacing: 0.8,
   },
   searchOptions: {
     fontSize: 20,
-    color: 'white',
-    padding: 10
+    color: '#A4C2A5',
+    padding: 10,
+    fontWeight: 'bold',
+    letterSpacing: 0.8,
   }
 });
 
