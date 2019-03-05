@@ -22,7 +22,7 @@ exports.formatNumbers = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "
 
 exports.analyseFlight = (origin, destination) => {
   const distance = Math.trunc(calculateDistanceInKm(origin.lat, origin.lng, destination.lat, destination.lng));
-  const carbonFootprint = distance*115 //in grams
+  const carbonFootprint = distance*158 //in grams: https://www.carbonindependent.org/sources_aviation.html
   const treesNeeded = Math.round(carbonFootprint/900000)*10 //in grams, assuming one tree absorbs 1 ton in its lifetime; currently one tree = 1/10th of a tree because otherwise they're too small
 
   const newFlight = {

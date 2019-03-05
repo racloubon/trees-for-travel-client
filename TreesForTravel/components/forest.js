@@ -34,13 +34,16 @@ export default class forest extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
-    opacity: 0.88,
-    margin: 10,
+    backgroundColor: '#F1F2EB',
+    opacity: 0.6,
+    marginHorizontal: 15,
+    marginVertical: 10,
     padding: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
     height: 200,
+    borderColor: '#4A4A48',
+    borderWidth: 1
   },
 });

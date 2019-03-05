@@ -1,28 +1,38 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 
-const splash2 = (props) => {
+const splash1 = (props) => {
   return (
-    <View style={{width: Dimensions.get('window').width}}>
-    
-
-    <View style={{backgroundColor: 'black', opacity: 0.8, marginTop: 400, paddingVertical: 20}}>
-      <Text style={styles.header}>Trees for Travel</Text>
-      <Text style={styles.subheader}>Calculate the carbon footprint of your flights</Text>
-    </View>
-
+    <View style={styles.container}>
+      <View style={styles.mask}></View>
+      <Text style={styles.header}>Pick an organisation and donate $XX.XX now:</Text>
+      <Text style={styles.header}>Organisation 1</Text>
+      <Text style={styles.header}>Organisation 2</Text>
+      <Text style={styles.header}>Organisation 3</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  mask: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    backgroundColor: '#566246',
+    opacity: 0.5,
+    position: 'absolute'
+  },
+  container: {
+    width: Dimensions.get('window').width,
+    paddingVertical: 30,
+  },
   header: {
     fontWeight: 'bold',
-    fontSize: 35,
+    fontSize: 25,
     textAlign: 'center',
-    color: 'white',
+    color: '#F1F2EB',
     letterSpacing: 0.8,
-    marginHorizontal: 80,
+    marginHorizontal: 20,
+    marginVertical: 35,
   },
   subheader: {
     fontWeight: 'bold',
@@ -31,9 +41,9 @@ const styles = StyleSheet.create({
     color: '#D8DAD3',
     marginTop: 10,
     letterSpacing: 0.8,
-    marginHorizontal: 50
+    marginHorizontal: 25
   }
 });
 
 
-export default splash2;
+export default splash1;

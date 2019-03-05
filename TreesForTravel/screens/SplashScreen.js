@@ -2,19 +2,11 @@ import React from 'react';
 import { ScrollView, StyleSheet, View, Text, Image, Dimensions } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-import Splash1 from '../components/splash1.js';
-import Splash2 from '../components/splash2.js';
-
-
 export default class SplashScreen extends React.Component {
 
   constructor(props) {
      super(props);
    }
-
-  // static navigationOptions = {
-  //   title: 'SPLASH',
-  // };
 
   render() {
 
@@ -32,10 +24,6 @@ export default class SplashScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  splash: {
-    backgroundColor: 'black',
-    marginTop: 20
-  },
   container: {
     width: Dimensions.get('window').width
   },
@@ -61,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#D8DAD3',
     alignSelf: 'center',
     marginTop: 300,
+    padding: 5
   },
   buttonText: {
     fontSize: 25,

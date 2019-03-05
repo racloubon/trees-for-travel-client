@@ -33,7 +33,6 @@ const summaryBar = ({ flights, isVisible }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
     margin: 10,
     padding: 10,
   },

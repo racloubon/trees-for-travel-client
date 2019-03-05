@@ -41,7 +41,7 @@ class citySearch extends React.Component {
         <TextInput
             style={styles.textInput}
             placeholder={this.props.name}
-            placeholderTextColor="white"
+            placeholderTextColor='#F1F2EB'
             value={this.props.city}
             onChangeText={this.handleChange}
           />
@@ -56,32 +56,29 @@ class citySearch extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
-    opacity: 0.88,
-    marginHorizontal: 10,
+    marginHorizontal: 15,
     marginVertical: 3,
-    padding: 10,
-  },
-  body: {
-    fontSize: 20,
-    backgroundColor: 'black',
-    color: '#F1F2EB',
-    fontWeight: 'bold',
-    letterSpacing: 0.8,
+    padding: 2,
+    borderColor: '#F1F2EB',
+    borderWidth: 1
   },
   textInput: {
     fontSize: 20,
-    backgroundColor: 'black',
+    // backgroundColor: '#F1F2EB',
+    // opacity: 0.8,
     color: '#F1F2EB',
     fontWeight: 'bold',
     letterSpacing: 0.8,
+    padding: 5
   },
   searchOptions: {
     fontSize: 20,
-    color: '#A4C2A5',
+    color: '#4A4A48',
+    backgroundColor: '#F1F2EB',
+    opacity: 0.7,
     padding: 10,
     fontWeight: 'bold',
-    letterSpacing: 0.8,
+    letterSpacing: 0.9,
   }
 });
 

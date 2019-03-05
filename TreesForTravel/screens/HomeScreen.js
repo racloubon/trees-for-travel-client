@@ -8,7 +8,7 @@ import CitySearch from '../components/citySearch.js';
 import Forest from '../components/forest.js';
 import SummaryBar from '../components/summaryBar.js';
 
-import forest from '../assets/forest.jpg'
+import splash1 from '../assets/splash1.jpg'
 import Cities from '../data/cities.json';
 import DataFunctions from '../dataProcessing/functions.js'
 
@@ -60,11 +60,11 @@ class HomeScreen extends React.Component {
       return (
         <View style={{paddingTop: 30}}>
           <Image
-            source={require('../assets/myTreesBg.jpg')}
+            source={require('../assets/splash1.jpg')}
             style={{position: 'absolute', height: Dimensions.get('window').height, flex: 1 }} />
           <CitySearch name="From" city={from} onChange={city => this.setState({from: city})} />
           <CitySearch name="To" city={to} onChange={city => this.setState({to: city})} />
-          <Text style={styles.button} title="Add Flight" onPress={this.addFlight}>+</Text>
+          <Text style={styles.button} onPress={this.addFlight}>Add</Text>
           <Forest flights={this.props.flights} />
           <SummaryBar flights={this.props.flights} isVisible={this.state.visible}/>
           {console.log(this.state.visible)}
@@ -75,14 +75,18 @@ class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   button: {
-    color: '#F1F2EB',
-    fontSize: 30,
-    textAlign: 'center',
-    backgroundColor: 'black',
-    opacity: 0.88,
-    margin: 10,
-    fontWeight: 'bold'
-  },
+    backgroundColor: '#D8DAD3',
+    color: 'black',
+    opacity: 0.7,
+    alignSelf: 'flex-end',
+    marginRight: 15,
+    marginTop: 5,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    letterSpacing: 0.8
+  }
 });
 
 const mapStateToProps = (state) => ({
