@@ -3,8 +3,8 @@ import { ScrollView, StyleSheet, View, Text, Image, Dimensions } from 'react-nat
 import { ExpoLinksView } from '@expo/samples';
 import { connect } from 'react-redux';
 
-import Splash1 from '../components/splash1.js';
-import Splash2 from '../components/splash2.js';
+import DoSomething1 from '../components/doSomething1.js';
+import DoSomething2 from '../components/doSomething2.js';
 
 
 class MoreInfoScreen extends React.Component {
@@ -18,17 +18,17 @@ class MoreInfoScreen extends React.Component {
   };
 
   render() {
-
+    const cost = ((this.props.flights.reduce((acc, flight) => acc + flight.carbonFootprint, 0)/1000*0.75)/100).toFixed(2)
     return (
       <View style={{flex: 1}}>
       <Image
-        source={require('../assets/splash1.jpg')}
+        source={require('../assets/background.jpg')}
         style={{position: 'absolute', height: Dimensions.get('window').height, flex: 1 }} />
 
       <ScrollView horizontal={true} decelerationRate={0} snapToInterval={Dimensions.get('window').width} snapToAlignment={"center"} style={styles.splash}>
 
-        <Splash1 flights={this.props.flights}/>
-        <Splash2 />
+        <DoSomething1 cost={cost} />
+        <DoSomething2 cost={cost} />
 
       </ScrollView>
       </View>

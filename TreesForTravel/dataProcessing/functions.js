@@ -23,14 +23,14 @@ exports.formatNumbers = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "
 exports.analyseFlight = (origin, destination) => {
   const distance = Math.trunc(calculateDistanceInKm(origin.lat, origin.lng, destination.lat, destination.lng));
   const carbonFootprint = distance*158 //in grams: https://www.carbonindependent.org/sources_aviation.html
-  const treesNeeded = Math.round(carbonFootprint/900000)*10 //in grams, assuming one tree absorbs 1 ton in its lifetime; currently one tree = 1/10th of a tree because otherwise they're too small
+  const treesNeeded = (carbonFootprint/900000).toFixed(1) //assuming one tree absorbs 1 ton in its lifetime;
 
   const newFlight = {
     origin: origin.city + ', ' + origin.country,
     destination: destination.city + ', ' + destination.country,
     distance: distance,
     carbonFootprint: carbonFootprint,
-    treesToOffset: new Array(treesNeeded).fill(0)
+    treesToOffset: new Array(treesNeeded*10).fill(0) 
   }
   return newFlight
 }

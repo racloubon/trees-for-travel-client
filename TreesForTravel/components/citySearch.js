@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { setSelectedOrigin, setSelectedDestination } from '../Redux/actions.js';
 
+import SearchOptions from './searchOptions.js'
+
 import Cities from '../data/cities.json';
 import DataFunctions from '../dataProcessing/functions.js'
 
@@ -31,32 +33,34 @@ class citySearch extends React.Component {
   }
 
   handleChange = (text) => {
-    let formattedInput = DataFunctions.processCityInput(text);
+    const formattedInput = DataFunctions.processCityInput(text);
     this.setState({noCitySelected: true});
     this.setState({matchingCities: this.searchForCity(formattedInput)});
   }
 
   render() {
+
+    console.log(this.props, '🦈')
+
       return <View style={styles.container}>
+
         <TextInput
             style={styles.textInput}
             placeholder={this.props.name}
             placeholderTextColor='#F1F2EB'
-            value={this.props.city}
+            value={!this.state.noCitySelected ? this.props.city : null}
             onChangeText={this.handleChange}
           />
-        {this.state.matchingCities.length && this.state.noCitySelected
-          ? this.state.matchingCities
-            .map((data, i) => <Text style={styles.searchOptions} key={i * i} onPress={() => this.handlePress(data, this.props.name)}>{data.city + ', ' + data.country}</Text>)
-          : null
-        }
+
+        <SearchOptions matchingCities={this.state.matchingCities} noCitySelected={this.state.noCitySelected} handlePress={this.handlePress} name={this.props.name} />
+
       </View>
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 15,
+    marginHorizontal: 10,
     marginVertical: 3,
     padding: 2,
     borderColor: '#F1F2EB',
@@ -64,21 +68,10 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 20,
-    // backgroundColor: '#F1F2EB',
-    // opacity: 0.8,
     color: '#F1F2EB',
     fontWeight: 'bold',
     letterSpacing: 0.8,
     padding: 5
-  },
-  searchOptions: {
-    fontSize: 20,
-    color: '#4A4A48',
-    backgroundColor: '#F1F2EB',
-    opacity: 0.7,
-    padding: 10,
-    fontWeight: 'bold',
-    letterSpacing: 0.9,
   }
 });
 

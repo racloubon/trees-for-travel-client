@@ -8,17 +8,18 @@ const Tree = posed.View({
 });
 
 const calculateFontSize = (treeCount) => {
-  if (treeCount <= 32) return 38;
-  if (treeCount <= 50 ) return 31;
-  if (treeCount <= 72 ) return 26;
-  if (treeCount <= 112 ) return 18;
-  if (treeCount <= 176 ) return 15;
+  if (treeCount <= 80) return 80; //80
+  if (treeCount <= 120) return 53;
+  if (treeCount <= 320) return 38;
+  if (treeCount <= 500 ) return 31;
+  if (treeCount <= 720 ) return 26;
+  if (treeCount <= 1120 ) return 18;
+  if (treeCount <= 1760 ) return 15;
   return 10;
 }
 
-export default ({ isVisible, treeCount }) => {
-  const randomNumber = Math.floor(Math.random()*3);
-  return (<Tree pose={isVisible ? 'visible' : 'hidden'}><Text style={{fontSize: calculateFontSize(treeCount)}}>{ randomNumber === 0 ? '🌲' : randomNumber === 1 ? '🌳' : '🌴' }</Text></Tree>)
+export default ({ isVisible, treeCount, num }) => {
+  return (<Tree pose={isVisible ? 'visible' : 'hidden'}><Text style={{fontSize: calculateFontSize(treeCount)}}>{num === 1 || num % 10 === 0 ? '🌲' : null }</Text></Tree>)
 }
 
 const styles = StyleSheet.create({

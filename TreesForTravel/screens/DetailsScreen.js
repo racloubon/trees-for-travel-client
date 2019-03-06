@@ -24,7 +24,7 @@ class DetailsScreen extends React.Component {
   };
 
   render() {
-    return (
+    if (this.props.flights) return (
       <ScrollView>
       <Image
         source={require('../assets/sky.jpg')}
@@ -36,13 +36,14 @@ class DetailsScreen extends React.Component {
                 <Text style={styles.header}>{flight.origin} → {flight.destination}</Text>
                 <Text style={styles.body}>Distance: {DataFunctions.formatNumbers(flight.distance)}km</Text>
                 <Text style={styles.body}>Carbon Emissions: {DataFunctions.formatNumbers(Math.round(flight.carbonFootprint/1000))}g</Text>
-                <Text style={styles.body}>Trees Needed: {flight.treesToOffset.length}</Text>
+                <Text style={styles.body}>Trees Needed: {flight.treesToOffset.length/10}</Text>
                 <Text style={styles.button} color="#4A4A48" onPress={() => this.deleteFlight(flight._id)}>✖</Text>
               </View>
             )
           })}
       </ScrollView>
-    );
+    )
+    return <Text style={styles.body}>Add a flight to begin</Text>
   }
 }
 

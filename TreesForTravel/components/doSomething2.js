@@ -1,16 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, Linking } from 'react-native';
 
-import DataFunctions from '../dataProcessing/functions.js'
+import OrganisationData from '../data/organisations.json';
+import Organisation from './organisation.js';
 
-const splash1 = ({ flights }) => {
+
+export default doSomething2 = ({ cost }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mask}></View>
-      <Text style={styles.header}>What can you do?</Text>
-      <Text style={styles.subheader}>Based on distance flown, the estimated cost to offset your carbon emissions is</Text>
-      <Text style={styles.header}>£{((flights.reduce((acc, flight) => acc + flight.carbonFootprint, 0)/1000*0.75)/100).toFixed(2)}</Text>
-      <Text style={styles.subheader}>How can you donate? → </Text>
+      <Text style={styles.header}>Pick an organisation and donate £{cost}</Text>
+      <Text style={styles.header} onPress={() => Linking.openURL('https://portal.worldlandtrust.org/portal/public/donate/donate.aspx?donationAmount=&productID=PLANT%20A%20TREE')}>World Land Trust</Text>
+      <Text style={styles.header} onPress={() => Linking.openURL('https://onetreeplanted.org/collections/where-we-plant')}>One Tree Planted</Text>
     </View>
   )
 }
@@ -19,13 +20,13 @@ const styles = StyleSheet.create({
   mask: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    backgroundColor: 'black',
+    backgroundColor: '#566246',
     opacity: 0.5,
     position: 'absolute'
   },
   container: {
     width: Dimensions.get('window').width,
-    paddingVertical: 100,
+    paddingVertical: 30,
   },
   header: {
     fontWeight: 'bold',
@@ -46,6 +47,3 @@ const styles = StyleSheet.create({
     marginHorizontal: 25
   }
 });
-
-
-export default splash1;

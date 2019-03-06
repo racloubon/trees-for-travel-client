@@ -1,14 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 
-const splash1 = (props) => {
+import DataFunctions from '../dataProcessing/functions.js'
+
+export default doSomething1 = ({ cost }) => {
   return (
     <View style={styles.container}>
       <View style={styles.mask}></View>
-      <Text style={styles.header}>Pick an organisation and donate $XX.XX now:</Text>
-      <Text style={styles.header}>Organisation 1</Text>
-      <Text style={styles.header}>Organisation 2</Text>
-      <Text style={styles.header}>Organisation 3</Text>
+      <Text style={styles.header}>What can you do?</Text>
+      <Text style={styles.subheader}>Based on distance flown, the estimated cost to offset your carbon emissions is</Text>
+      <Text style={styles.header}>£{cost}</Text>
+      <Text style={styles.subheader}>How can you donate?  </Text>
+      <Text style={styles.arrow}> → </Text>
     </View>
   )
 }
@@ -17,13 +20,13 @@ const styles = StyleSheet.create({
   mask: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-    backgroundColor: '#566246',
+    backgroundColor: 'black',
     opacity: 0.5,
     position: 'absolute'
   },
   container: {
     width: Dimensions.get('window').width,
-    paddingVertical: 30,
+    paddingVertical: 100,
   },
   header: {
     fontWeight: 'bold',
@@ -42,8 +45,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     letterSpacing: 0.8,
     marginHorizontal: 25
+  },
+  arrow: {
+    fontWeight: 'bold',
+    fontSize: 50,
+    textAlign: 'center',
+    color: '#D8DAD3',
+    marginTop: 10,
+    letterSpacing: 0.8,
   }
 });
-
-
-export default splash1;

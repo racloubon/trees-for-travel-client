@@ -6,14 +6,13 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import DetailsScreen from '../screens/DetailsScreen';
 import MoreInfoScreen from '../screens/MoreInfoScreen';
-import SplashScreen from '../screens/SplashScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'My Trees',
+  tabBarLabel: 'My Stats',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

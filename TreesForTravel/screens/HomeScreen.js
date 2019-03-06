@@ -1,14 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image, Dimensions } from 'react-native';
-
+import { StyleSheet, Text, View, TextInput, Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { getFlights, postFlight } from '../Redux/actions.js';
-
 import CitySearch from '../components/citySearch.js';
 import Forest from '../components/forest.js';
 import SummaryBar from '../components/summaryBar.js';
-
-import splash1 from '../assets/splash1.jpg'
 import Cities from '../data/cities.json';
 import DataFunctions from '../dataProcessing/functions.js'
 
@@ -24,7 +20,7 @@ class HomeScreen extends React.Component {
    }
 
   static navigationOptions = {
-    title: 'My Trees',
+    title: 'My Stats',
   };
 
   addFlight = () => {
@@ -32,7 +28,7 @@ class HomeScreen extends React.Component {
       from: null,
       to: null
     });
-    let flightData = DataFunctions.analyseFlight(this.props.selectedOrigin, this.props.selectedDestination);
+    const flightData = DataFunctions.analyseFlight(this.props.selectedOrigin, this.props.selectedDestination);
     fetch('http://192.168.1.187:3000/flights', {
       method: 'POST',
       headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
@@ -59,15 +55,21 @@ class HomeScreen extends React.Component {
     const {from, to} = this.state;
       return (
         <View style={{paddingTop: 30}}>
+
           <Image
-            source={require('../assets/splash1.jpg')}
+            source={require('../assets/background.jpg')}
             style={{position: 'absolute', height: Dimensions.get('window').height, flex: 1 }} />
-          <CitySearch name="From" city={from} onChange={city => this.setState({from: city})} />
-          <CitySearch name="To" city={to} onChange={city => this.setState({to: city})} />
-          <Text style={styles.button} onPress={this.addFlight}>Add</Text>
-          <Forest flights={this.props.flights} />
+
           <SummaryBar flights={this.props.flights} isVisible={this.state.visible}/>
-          {console.log(this.state.visible)}
+
+          <CitySearch name="From" city={from} onChange={city => this.setState({from: city})} />
+
+          <CitySearch name="To" city={to} onChange={city => this.setState({to: city})} />
+
+          <Text style={styles.button} onPress={this.addFlight}>Add</Text>
+
+          <Forest flights={this.props.flights} />
+
         </View>
       )
   }
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
     color: 'black',
     opacity: 0.7,
     alignSelf: 'flex-end',
-    marginRight: 15,
+    marginRight: 10,
     marginTop: 5,
     paddingHorizontal: 15,
     paddingVertical: 10,

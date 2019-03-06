@@ -21,13 +21,15 @@ export default class forest extends React.Component {
    }
 
   render () {
-    return (
+
+    if (this.props.flights.length) return (
       <View style={styles.container}>
         {
-          this.props.flights.map((flight, i) => flight.treesToOffset.map((flight, j) => <Tree isVisible={this.state.visible} key={i + j} treeCount={this.props.flights.reduce((acc, flight) => acc + flight.treesToOffset.length, 0)} />))
+          this.props.flights.map((flight, i) => flight.treesToOffset.map((flight, j) => <Tree isVisible={this.state.visible} key={j + i} num={j + 1} treeCount={this.props.flights.reduce((acc, flight) => acc + flight.treesToOffset.length, 0)} />))
         }
       </View>
     )
+    return null
   }
 
 }
@@ -36,12 +38,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F1F2EB',
     opacity: 0.6,
-    marginHorizontal: 15,
+    marginHorizontal: 10,
     marginVertical: 10,
     padding: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'center',
     height: 200,
     borderColor: '#4A4A48',
     borderWidth: 1

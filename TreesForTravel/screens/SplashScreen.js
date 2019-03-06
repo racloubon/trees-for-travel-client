@@ -13,7 +13,7 @@ export default class SplashScreen extends React.Component {
     return (
       <View style={{flex: 1}}>
         <Image
-          source={require('../assets/splash1.jpg')}
+          source={require('../assets/background.jpg')}
           style={{position: 'absolute', width: Dimensions.get('window').width, flex: 1 }} />
         <Text style={styles.header}>Trees for Travel</Text>
         <Text style={styles.subheader}>Calculate the carbon footprint of your flights</Text>

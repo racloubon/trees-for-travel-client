@@ -1,0 +1,17 @@
+[
+  {
+    "name": "World Land Trust",
+    "url": "https://portal.worldlandtrust.org/portal/public/donate/donate.aspx?donationAmount=&productID=PLANT%20A%20TREE",
+    "logo": "/WorldLandTrust.png"
+  },
+  {
+    "name": "One Tree Planted",
+    "url": "https://onetreeplanted.org/collections/where-we-plant",
+    "logo": "/OneTreePlanted.png"
+  },
+  {
+    "name": "Trees for Life",
+    "url": "https://treesforlife.org.uk/plant-trees/becoming-carbon-conscious/",
+    "logo": "/TreesforLife.png"
+  }
+]
