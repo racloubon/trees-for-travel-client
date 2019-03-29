@@ -7,15 +7,29 @@ Trees for Travel can calculate the carbon footprint of distances between over 13
 
 
 ### Getting Started
-* Follow the instructions to set up the server for your project.
+* Follow the instructions [here](https://github.com/racloubon/trees-for-travel-server) to set up the server for your project
 * Clone this repository
-* Navigate into XXXX and run `npm install` from the command line
-* Run `npm start` from the command line. React Native will generate a number of options for running the app in a device emulator or Expo.
+* Once in the repo, run the following commands from the terminal:
+```
+cd TreesforTravel
+npm install
+npm start
+```
+* Follow the generated instructions to run the app in a device emulator or on your own device using Expo.
 
 ### Tech Stack
 * React Native 
 * Redux
 
+### Screenshots
+
+![Landing Page](https://raw.githubusercontent.com/racloubon/trees-for-travel-client/master/screenshots/IMG_6653_iphone8spacegrey_portrait.png)
+
+![Landing Page](https://raw.githubusercontent.com/racloubon/trees-for-travel-client/master/screenshots/IMG_6654_iphone8spacegrey_portrait.png)
+
+![Landing Page](https://raw.githubusercontent.com/racloubon/trees-for-travel-client/master/screenshots/IMG_6655_iphone8spacegrey_portrait.png)
+
+![Landing Page](https://raw.githubusercontent.com/racloubon/trees-for-travel-client/master/screenshots/IMG_6656_iphone8spacegrey_portrait.png)
 
 
 
