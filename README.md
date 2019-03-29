@@ -6,9 +6,10 @@ Trees for Travel is an app to calculate and store the carbon footprint of the fl
 Trees for Travel can calculate the carbon footprint of distances between over 13,000 cities worldwide based on the estimate carbon emissions of a Boeing 747 at 80% capacity. All calculations can be easily adjusted within the code.
 
 
-### Getting Started
+### Getting Started (using Node.js)
 * Follow the instructions [here](https://github.com/racloubon/trees-for-travel-server) to set up the server for your project
 * Clone this repository
+* Open `.config.js` and enter your local IP address and the port for the server (set by default to 3000).
 * Once in the repo, run the following commands from the terminal:
 ```
 cd TreesforTravel
