@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './Redux/reducers.js'
 
-
 //Components
 import AppNavigator from './navigation/AppNavigator';
 

@@ -17,7 +17,7 @@ const initialState = {
 const flights = (state = initialState.flights, action) => {
   switch (action.type) {
     case GET_FLIGHTS:
-      return [...state].concat(action.flights)
+      return [...state, ...action.flights]
     case POST_FLIGHT:
       return [...state, action.flight]
     case DELETE_FLIGHT:

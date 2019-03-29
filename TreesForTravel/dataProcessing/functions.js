@@ -1,8 +1,6 @@
-import Cities from '../data/cities.json';
-
 exports.processCityInput = (city) => {
-  let arr = city.trim().toLowerCase().split('');
-  let newCity = arr.map((val, i, col) => col[i - 1] === ' ' || i === 0 ? val.toUpperCase() : val);
+  const arr = city.trim().toLowerCase().split('');
+  const newCity = arr.map((val, i, col) => col[i - 1] === ' ' || i === 0 ? val.toUpperCase() : val);
   return newCity.join('')
 }
 
@@ -30,7 +28,7 @@ exports.analyseFlight = (origin, destination) => {
     destination: destination.city + ', ' + destination.country,
     distance: distance,
     carbonFootprint: carbonFootprint,
-    treesToOffset: new Array(treesNeeded*10).fill(0) 
+    treesToOffset: new Array(treesNeeded*10).fill(0)
   }
   return newFlight
 }

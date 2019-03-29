@@ -9,7 +9,7 @@ import SearchOptions from './searchOptions.js'
 import Cities from '../data/cities.json';
 import DataFunctions from '../dataProcessing/functions.js'
 
-class citySearch extends React.Component {
+class CitySearch extends React.Component {
 
   constructor(props) {
      super(props);
@@ -34,13 +34,13 @@ class citySearch extends React.Component {
 
   handleChange = (text) => {
     const formattedInput = DataFunctions.processCityInput(text);
-    this.setState({noCitySelected: true});
-    this.setState({matchingCities: this.searchForCity(formattedInput)});
+    this.setState({
+      noCitySelected: true,
+      matchingCities: this.searchForCity(formattedInput)
+    });
   }
 
   render() {
-
-    console.log(this.props, '🦈')
 
       return <View style={styles.container}>
 
@@ -85,4 +85,4 @@ const mapDispatchToProps = (dispatch) => ({
   setSelectedDestination: city => dispatch(setSelectedDestination(city)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(citySearch);
+export default connect(mapStateToProps, mapDispatchToProps)(CitySearch);

@@ -7,6 +7,7 @@ import Forest from '../components/forest.js';
 import SummaryBar from '../components/summaryBar.js';
 import Cities from '../data/cities.json';
 import DataFunctions from '../dataProcessing/functions.js'
+import config from '../config.js'
 
 class HomeScreen extends React.Component {
 
@@ -29,7 +30,7 @@ class HomeScreen extends React.Component {
       to: null
     });
     const flightData = DataFunctions.analyseFlight(this.props.selectedOrigin, this.props.selectedDestination);
-    fetch('http://192.168.1.187:3000/flights', {
+    fetch(`http://${config.ip}:${config.port}/flights`, {
       method: 'POST',
       headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify(flightData),
@@ -40,7 +41,7 @@ class HomeScreen extends React.Component {
   }
 
   loadFlights = async () => {
-    fetch("http://192.168.1.187:3000/flights")
+    fetch(`http://${config.ip}:${config.port}/flights`)
       .then(response => response.json())
       .then(flights => this.props.getFlights(flights))
       .catch(error => console.log('error with getting Flights: ' + error))
@@ -52,6 +53,7 @@ class HomeScreen extends React.Component {
   };
 
   render() {
+    
     const {from, to} = this.state;
       return (
         <View style={{paddingTop: 30}}>

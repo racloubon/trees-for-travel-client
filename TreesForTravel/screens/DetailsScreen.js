@@ -9,10 +9,6 @@ import DataFunctions from '../dataProcessing/functions.js'
 
 class DetailsScreen extends React.Component {
 
-  constructor(props) {
-     super(props);
-   }
-
    deleteFlight = async (id) => {
      fetch('http://192.168.1.187:3000/flights/' + id, {method: 'DELETE'})
       .then(response => this.props.deleteFlight(id))

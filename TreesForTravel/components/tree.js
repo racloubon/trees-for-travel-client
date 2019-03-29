@@ -8,7 +8,7 @@ const Tree = posed.View({
 });
 
 const calculateFontSize = (treeCount) => {
-  if (treeCount <= 80) return 80; //80
+  if (treeCount <= 80) return 80;
   if (treeCount <= 120) return 53;
   if (treeCount <= 320) return 38;
   if (treeCount <= 500 ) return 31;
