@@ -9,7 +9,7 @@ Trees for Travel can calculate the carbon footprint of distances between over 13
 ### Getting Started (using Node.js)
 * Follow the instructions [here](https://github.com/racloubon/trees-for-travel-server) to set up the server for your project
 * Clone this repository
-* Open `.config.js` and enter your local IP address and the port for the server (set by default to 3000).
+* Open `config.js` and enter your local IP address and the port for the server (set by default to 3000).
 * Once in the repo, run the following commands from the terminal:
 ```
 cd TreesforTravel
